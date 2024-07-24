@@ -1,27 +1,35 @@
 'use client';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import SignUp from './SignUp';
-import LogIn from './LogIn';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 
-const AuthCard = () => {
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+
+export default function AuthCard() {
+  const router = useRouter();
   return (
-    <Tabs defaultValue="login">
-      <TabsList className="flex w-full ">
-        <TabsTrigger className="flex-grow" value="login">
-          Log In
-        </TabsTrigger>
-        <TabsTrigger className="flex-grow" value="signup">
-          Sign Up
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="login">
-        <LogIn />
-      </TabsContent>
-      <TabsContent value="signup">
-        <SignUp />
-      </TabsContent>
-    </Tabs>
+    <Card className="min-w-[30rem]">
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-2xl">DoritoCC</CardTitle>
+        <CardDescription>
+          Use a custom Computer Vision model to count calories
+        </CardDescription>
+      </CardHeader>
+      <CardFooter>
+        <Button
+          className="w-full"
+          onClick={() => router.push('/api/auth/login')}
+        >
+          Auth0 Sign In
+        </Button>
+      </CardFooter>
+    </Card>
   );
-};
-
-export default AuthCard;
+}
