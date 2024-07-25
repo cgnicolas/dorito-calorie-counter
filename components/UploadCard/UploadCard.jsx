@@ -9,14 +9,9 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { uploadImage } from '@/lib/server-actions/upload';
 
 export default function UploadCard() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const file = formData.get('dImage');
-    console.log(file);
-  };
   return (
     <Card className="flex flex-col justify-between min-w-[30rem]">
       <CardHeader className="space-y-1">
@@ -26,7 +21,7 @@ export default function UploadCard() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit}>
+        <form action={uploadImage}>
           <Input name="dImage" type="file" />
           <Button type="submit">Upload</Button>
         </form>
