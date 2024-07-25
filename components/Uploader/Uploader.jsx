@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { uploadImage } from '@/lib/server-actions/upload';
 import { DoritoContext } from '@/context/DoritoContext';
+import { Label } from '../ui/label';
 
 export default function Uploader() {
   const [file, setFile] = useState(null);
@@ -31,9 +32,13 @@ export default function Uploader() {
         name="dImage"
         required
         type="file"
+        accept=".png,.jpg,.jpeg"
         className="cursor-pointer file:rounded-md file:bg-primary file:hover:bg-primary/90 file:text-white file:cursor-pointer"
         onChange={(e) => setFile(e.target.files[0])}
       />
+      <small className="text-sm font-medium leading-none">
+        Max image size: 1MB
+      </small>
       <Button onClick={uploadFile} disabled={loading}>
         Upload
       </Button>
