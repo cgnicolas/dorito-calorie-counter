@@ -1,16 +1,31 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { uploadImage } from '@/lib/server-actions/upload';
 import { DoritoContext } from '@/context/DoritoContext';
-import { Label } from '../ui/label';
+import { useToast } from '@/components/ui/use-toast';
 
 export default function Uploader() {
   const [file, setFile] = useState(null);
-  // const [response, setResponse] = useState(null);
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const { setServing } = useContext(DoritoContext);
+  const [isFileTooLarge, setIsFileTooLarge] = useState(false);
+
+  useEffect(() => {
+    if (file?.size > 1048576) {
+      setIsFileTooLarge(true);
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'Looks like your file size is too big.',
+      });
+    } else {
+      setIsFileTooLarge(false);
+    }
+  }, [file, toast]);
+
   const uploadFile = () => {
     const reader = new FileReader();
     setLoading(true);
@@ -36,10 +51,14 @@ export default function Uploader() {
         className="cursor-pointer file:rounded-md file:bg-primary file:hover:bg-primary/90 file:text-white file:cursor-pointer"
         onChange={(e) => setFile(e.target.files[0])}
       />
-      <small className="text-sm font-medium leading-none">
-        Max image size: 1MB
+      <small
+        className={`text-sm font-medium leading-none ${
+          isFileTooLarge && 'text-red-600'
+        }`}
+      >
+        {loading ? 'Loading...' : 'Max image size: 1MB'}
       </small>
-      <Button onClick={uploadFile} disabled={loading}>
+      <Button onClick={uploadFile} disabled={loading || isFileTooLarge}>
         Upload
       </Button>
     </div>
