@@ -26,7 +26,7 @@ export default function Uploader() {
     }
   };
   return (
-    <div className="p-32 border-2 rounded-xl border-dashed flex flex-col justify-evenly items-center gap-6">
+    <div className="p-4 sm:p-8 md:p-16 lg:p-32 border-2 rounded-xl border-dashed flex flex-col justify-evenly items-center gap-4 sm:gap-6">
       <Input
         name="dImage"
         required
