@@ -1,10 +1,17 @@
 'use client';
 import { DoritoContext } from '@/context/DoritoContext';
-import React, { useContext } from 'react';
+import { getUserServings } from '@/lib/calorie-counter/utils';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import React, { useContext, useEffect } from 'react';
 
 export default function ServingInformation() {
   const { serving } = useContext(DoritoContext);
-  console.log(serving);
+  const { user } = useUser();
+  useEffect(() => {
+    if (user) {
+      getUserServings(user.sub);
+    }
+  }, [user]);
   return (
     serving && (
       <div className="text-lg font-semibold">
