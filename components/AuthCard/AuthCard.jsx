@@ -15,7 +15,7 @@ import {
 export default function AuthCard() {
   const router = useRouter();
   return (
-    <Card className="min-w-[30rem]">
+    <Card className="w-full md:max-w-[30rem]">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl">DoritoCC</CardTitle>
         <CardDescription>
