@@ -1,23 +1,24 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { uploadImage } from '@/lib/server-actions/upload';
+import { DoritoContext } from '@/context/DoritoContext';
 
 export default function Uploader() {
   const [file, setFile] = useState(null);
-  const [response, setResponse] = useState(null);
+  // const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { setServing } = useContext(DoritoContext);
   const uploadFile = () => {
     const reader = new FileReader();
     setLoading(true);
     // Convert image to base64 string
     reader.onloadend = async () => {
       const base64String = reader.result.split(',')[1]; // Extract base64 string from data URL
-      const res = await uploadImage(base64String);
-      setResponse(res);
+      const serving = await uploadImage(base64String);
+      setServing(serving);
       setLoading(false);
-      console.log(res);
     };
 
     if (file) {
