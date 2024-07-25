@@ -2,7 +2,7 @@
 import ServingInformation from '@/components/ServingInformation';
 import Uploader from '@/components/Uploader/Uploader';
 import { DoritoProvider } from '@/context/DoritoContext';
-import React, { useContext } from 'react';
+import React from 'react';
 
 export default function CCPage() {
   return (

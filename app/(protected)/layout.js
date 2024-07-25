@@ -1,11 +1,12 @@
-import { getSession } from '@auth0/nextjs-auth0';
-import { redirect } from 'next/navigation';
+import Navbar from '@/components/Navbar/Navbar';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import React from 'react';
 
-export default async function ProtectedLayout({ children }) {
-  const session = await getSession();
-  if (!session?.user) {
-    redirect('/');
-  }
-
-  return <>{children}</>;
-}
+export default withPageAuthRequired(function ProtectedLayout({ children }) {
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
+});
