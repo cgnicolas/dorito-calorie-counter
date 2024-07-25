@@ -1,3 +1,4 @@
+import { countCalories } from '@/lib/calorie-counter/utils';
 import { getDoritoCount } from '@/lib/roboflow/actions';
 import { NextResponse } from 'next/server';
 export async function GET(request) {
@@ -9,7 +10,10 @@ export async function POST(req) {
   try {
     const { image } = await req.json();
     const doritoCount = await getDoritoCount(image);
-    return NextResponse.json({ doritoCount });
+    return NextResponse.json({
+      calories: countCalories(doritoCount),
+      doritoCount,
+    });
   } catch (error) {
     console.error('Error uploading file:', error);
     return NextResponse.json(

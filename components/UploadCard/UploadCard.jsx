@@ -14,6 +14,7 @@ import { uploadImage } from '@/lib/server-actions/upload';
 
 export default function UploadCard() {
   const [doritoCount, setDoritoCount] = useState(0);
+  const [calorieCount, setCalorieCount] = useState(0);
   const [file, setFile] = useState(null);
   const handleUpload = async (event) => {
     event.preventDefault();
@@ -23,8 +24,9 @@ export default function UploadCard() {
     reader.onloadend = async () => {
       const base64String = reader.result.split(',')[1]; // Extract base64 string from data URL
       const response = await uploadImage(base64String);
-      const { doritoCount: count } = response;
+      const { doritoCount: count, calories } = response;
       setDoritoCount(count);
+      setCalorieCount(calories);
     };
 
     if (file) {
@@ -47,7 +49,9 @@ export default function UploadCard() {
         />
         <Button onClick={handleUpload}>Upload</Button>
       </CardContent>
-      <CardFooter>{doritoCount} Doritos</CardFooter>
+      <CardFooter>
+        {doritoCount} Doritos, which is equal to {calorieCount} calories
+      </CardFooter>
     </Card>
   );
 }
