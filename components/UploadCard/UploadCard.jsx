@@ -19,6 +19,7 @@ export default function UploadCard() {
     event.preventDefault();
     const reader = new FileReader();
 
+    // Convert image to base64 string
     reader.onloadend = async () => {
       const base64String = reader.result.split(',')[1]; // Extract base64 string from data URL
       const response = await uploadImage(base64String);
