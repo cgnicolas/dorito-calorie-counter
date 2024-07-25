@@ -2,7 +2,6 @@ import { addServingToDb, countCalories } from '@/lib/calorie-counter/utils';
 import { getDoritoCount } from '@/lib/roboflow/actions';
 import { NextResponse } from 'next/server';
 export async function GET(request) {
-  console.log(request);
   return Response.json({ data: 'Good' });
 }
 
