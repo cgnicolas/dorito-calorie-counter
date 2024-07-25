@@ -8,7 +8,7 @@ export async function GET(request) {
 
 export async function POST(req) {
   try {
-    const { image } = await req.json();
+    const { image, userId } = await req.json();
     const doritoCount = await getDoritoCount(image);
     return NextResponse.json({
       calories: countCalories(doritoCount),
