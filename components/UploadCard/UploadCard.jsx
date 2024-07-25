@@ -42,17 +42,25 @@ export default function UploadCard() {
           Cool Ranch)
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <Input
-          name="dImage"
-          type="file"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <Button onClick={handleUpload}>Upload</Button>
-      </CardContent>
-      <CardFooter>
-        {doritoCount} Doritos, which is equal to {calorieCount} calories
-      </CardFooter>
+      <form onSubmit={handleUpload}>
+        <CardContent>
+          <Input
+            name="dImage"
+            required
+            type="file"
+            className="cursor-pointer file:rounded-md file:bg-primary file:hover:bg-primary/90 file:text-white file:cursor-pointer"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+        </CardContent>
+        <CardFooter className="flex flex-col">
+          <Button type="submit" className="w-full mb-5">
+            Upload
+          </Button>
+          <div>
+            {doritoCount} Doritos, which is equal to {calorieCount} calories
+          </div>
+        </CardFooter>
+      </form>
     </Card>
   );
 }
