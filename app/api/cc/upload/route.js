@@ -1,3 +1,4 @@
+import { getDoritoCount } from '@/lib/roboflow/actions';
 import { NextResponse } from 'next/server';
 export async function GET(request) {
   console.log(request);
@@ -6,9 +7,8 @@ export async function GET(request) {
 
 export async function POST(req) {
   try {
-    const buffer = await req.arrayBuffer();
-    console.log('Received array buffer of size:', buffer.byteLength);
-
+    const buffer = await req.arrayBuffer(); // Get Image Buffer
+    const doritoCount = await getDoritoCount(buffer);
     return NextResponse.json({ message: 'File uploaded successfully' });
   } catch (error) {
     console.error('Error uploading file:', error);
