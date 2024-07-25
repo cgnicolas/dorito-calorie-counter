@@ -7,9 +7,9 @@ export async function GET(request) {
 
 export async function POST(req) {
   try {
-    const buffer = await req.arrayBuffer(); // Get Image Buffer
-    const doritoCount = await getDoritoCount(buffer);
-    return NextResponse.json({ message: 'File uploaded successfully' });
+    const { image } = await req.json();
+    const doritoCount = await getDoritoCount(image);
+    return NextResponse.json({ doritoCount });
   } catch (error) {
     console.error('Error uploading file:', error);
     return NextResponse.json(
