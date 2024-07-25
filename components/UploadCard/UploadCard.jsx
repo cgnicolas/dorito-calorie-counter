@@ -38,7 +38,8 @@ export default function UploadCard() {
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl">Upload An Image</CardTitle>
         <CardDescription>
-          Upload an image of your serving of Doritos
+          Upload an image of your serving of Doritos (the model was trained with
+          Cool Ranch)
         </CardDescription>
       </CardHeader>
       <CardContent>
