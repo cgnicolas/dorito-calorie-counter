@@ -32,9 +32,14 @@ export default function Uploader() {
     // Convert image to base64 string
     reader.onloadend = async () => {
       const base64String = reader.result.split(',')[1]; // Extract base64 string from data URL
-      const serving = await uploadImage(base64String);
-      setServing(serving);
-      setLoading(false);
+      try {
+        const serving = await uploadImage(base64String);
+        setServing(serving);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     if (file) {
