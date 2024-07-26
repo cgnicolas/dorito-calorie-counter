@@ -5,11 +5,13 @@ import { Input } from '@/components/ui/input';
 import { uploadImage } from '@/lib/server-actions/upload';
 import { DoritoContext } from '@/context/DoritoContext';
 import { useToast } from '@/components/ui/use-toast';
+import Image from 'next/image';
 
 export default function Uploader() {
   const [file, setFile] = useState(null);
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState(null);
   const { setServing } = useContext(DoritoContext);
   const [isFileTooLarge, setIsFileTooLarge] = useState(false);
 
@@ -25,6 +27,18 @@ export default function Uploader() {
       setIsFileTooLarge(false);
     }
   }, [file, toast]);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    setFile(event.target.files[0]);
+  };
 
   const uploadFile = () => {
     const reader = new FileReader();
@@ -48,13 +62,16 @@ export default function Uploader() {
   };
   return (
     <div className="p-4 sm:p-8 md:p-16 lg:p-32 border-2 rounded-xl border-dashed flex flex-col justify-evenly items-center gap-4 sm:gap-6">
+      {image && (
+        <Image src={image} alt="Uploaded Preview" width={400} height={400} />
+      )}
       <Input
         name="dImage"
         required
         type="file"
         accept=".png,.jpg,.jpeg"
         className="cursor-pointer file:rounded-md file:bg-primary file:hover:bg-primary/90 file:text-white file:cursor-pointer"
-        onChange={(e) => setFile(e.target.files[0])}
+        onChange={handleImageChange}
       />
       <small
         className={`text-sm font-medium leading-none ${
