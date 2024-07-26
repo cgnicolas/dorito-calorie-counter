@@ -16,7 +16,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This project utilizes [Auth0](https://auth0.com/), [Roboflow](https://roboflow.com/), and [Firestore](https://firebase.google.com/docs/firestore), and are requirements for getting up and running locally. That being said, there are environment variables associated with each service that will need to be set up locally in order to use the application.
+This project utilizes [Auth0](https://auth0.com/), [Roboflow](https://roboflow.com/) (specifically the [Dorito Counter Project](https://universe.roboflow.com/rundownworkspace/dorito-counter)), and [Firestore](https://firebase.google.com/docs/firestore), and are requirements for getting up and running locally. That being said, there are environment variables associated with each service that will need to be set up locally in order to use the application.
 
 ## Screenshots
 
