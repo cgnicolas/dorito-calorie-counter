@@ -9,10 +9,14 @@ export default function CCPage() {
   return (
     <DoritoProvider>
       <div className="px-4 sm:px-8 md:px-16 lg:px-32 flex w-full h-screen flex-col items-center justify-center">
-        <Tabs defaultValue="account" className="w-auto">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="upload">Upload</TabsTrigger>
-            <TabsTrigger value="chart">Chart</TabsTrigger>
+        <Tabs defaultValue="upload" className="w-auto">
+          <TabsList className="w-full flex">
+            <TabsTrigger className="w-1/2" value="upload">
+              Upload
+            </TabsTrigger>
+            <TabsTrigger className="w-1/2" value="chart">
+              Chart
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="upload">
             <Uploader />
