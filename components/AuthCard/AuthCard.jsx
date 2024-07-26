@@ -19,7 +19,8 @@ export default function AuthCard() {
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl">DoritoCC</CardTitle>
         <CardDescription>
-          Use a custom Computer Vision model to count calories
+          Use a custom Computer Vision model to estimate and track your
+          consumption of Doritos
         </CardDescription>
       </CardHeader>
       <CardFooter>
