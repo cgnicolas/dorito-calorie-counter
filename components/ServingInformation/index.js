@@ -9,8 +9,8 @@ export default function ServingInformation() {
   return (
     serving && (
       <div className="text-lg font-semibold">
-        This serving of {serving.doritoCount} Doritos will be {serving.calories}{' '}
-        calories
+        This serving of {serving.doritoCount} full Doritos will be{' '}
+        {serving.calories} calories
       </div>
     )
   );
