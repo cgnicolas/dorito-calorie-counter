@@ -6,6 +6,7 @@ import { uploadImage } from '@/lib/server-actions/upload';
 import { DoritoContext } from '@/context/DoritoContext';
 import { useToast } from '@/components/ui/use-toast';
 import Image from 'next/image';
+import ServingInformation from '../ServingInformation';
 
 export default function Uploader() {
   const [file, setFile] = useState(null);
@@ -63,7 +64,16 @@ export default function Uploader() {
   return (
     <div className="p-4 sm:p-8 md:p-16 lg:p-32 border-2 rounded-xl border-dashed flex flex-col justify-evenly items-center gap-4 sm:gap-6">
       {image && (
-        <Image src={image} alt="Uploaded Preview" width={400} height={400} />
+        <>
+          <Image
+            src={image}
+            alt="Uploaded Preview"
+            className="max-w-96 w-auto"
+            width={1}
+            height={1}
+          />
+          <ServingInformation />
+        </>
       )}
       <Input
         name="dImage"
