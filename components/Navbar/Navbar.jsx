@@ -1,9 +1,7 @@
 import React from 'react';
-import { getSession } from '@auth0/nextjs-auth0';
 import Link from 'next/link';
 
 export default async function Navbar() {
-  const { user } = await getSession();
   return (
     <nav className="sticky top-0 bg-white border-b-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +12,6 @@ export default async function Navbar() {
             </div>
           </div>
           <div className="flex space-x-4 items-center">
-            <p className="hidden md:block">Hello, {user.given_name}</p>
             <Link
               className="bg-primary text-white rounded-md p-2 hover:bg-primary/90"
               href="/api/auth/logout"
